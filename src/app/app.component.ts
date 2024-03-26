@@ -10,7 +10,7 @@ import { SidebarComponent } from "./partials/sidebar/sidebar.component";
     providers: [HttpClientModule],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [CommonModule, HttpClientModule, RouterOutlet, RouterModule, HomeComponent, SidebarComponent]
+    imports: [CommonModule, HttpClientModule, RouterOutlet, RouterModule]
 })
 export class AppComponent {
   title = 'LicenseManagement.WebApp';

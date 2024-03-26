@@ -20,7 +20,9 @@ import { RouterModule } from '@angular/router';
 export class DocubaseLicenseComponent implements OnInit {
     docubaseLicenses:DocubaseLicense[]
     isBrowser:boolean;
-    constructor(private licenseService:LicenseService ,private contextService:ContextService ){}
+    constructor(private licenseService:LicenseService ,private contextService:ContextService){}
+
+    
 
     ngOnInit(): void {
         this.docubaseLicenses=[];
@@ -29,6 +31,8 @@ export class DocubaseLicenseComponent implements OnInit {
             this.getLicensesDatatable()
         }
     }
+
+   
 
     
 

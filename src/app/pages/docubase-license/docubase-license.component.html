@@ -37,10 +37,12 @@
                                     <th>Id</th>
                                     <th>N°Licence</th>
                                     <th>Nom Client</th>
+                                    <th>Pays</th>
                                     <th>Type Licence</th>
                                     <th>Date Acquisition</th>
                                     <th>Date Expiration</th>
                                     <th>Objet</th>
+                                    <th>Action</th>
                                     
                                 </tr>
                             </thead>
@@ -50,11 +52,15 @@
                                     <td>{{ license.id }}</td>
                                     <td>{{ license.number }}</td>
                                     <td>{{ license.client.name }}</td>
+                                    <td>{{ license.client.country.name }}</td>
                                     <td>{{ license.docubaseType.name }}</td>
                                     <td>{{ license.acquisitionDate | date:'dd/MM/YYYY' }}</td>
                                     <td>{{ license.expirationDate | date:'dd/MM/YYYY' }}</td>
                                     <td>{{ license.object }}</td>
-                                    
+                                    <td> 
+                                        <a mat-raised-button class="btn btn-danger btn-circle btn-sm mr-2" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash"></i></a>
+                                        <a href="#" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -72,6 +78,25 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
+<!-- Delete Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Voulez-vous supprimer cette licence?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+            <a class="btn btn-primary" href="login.html">Supprimer</a>
+        </div>
+    </div>
+</div>
+</div>
     <app-footer></app-footer>
 
 </div>
