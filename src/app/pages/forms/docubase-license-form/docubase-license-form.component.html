@@ -1,0 +1,120 @@
+<div id="wrapper">
+    <!-- Sidebar -->
+    
+    <app-sidebar></app-sidebar>
+    
+
+    
+<!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+        <app-topbar></app-topbar>
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800">Docubase</h1>
+            <p class="mb-4">Ajouter une licence</p>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Données</h6>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="number">Numéro de serie</label>
+                            <input type="text" class="form-control" id="number" formControlName="number">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="docubaseLicenseTypeId">Type de Licence</label>
+                            <select class="form-control form-control-solid" id="docubaseLicenseTypeId" formControlName="docubaseLicenseTypeId">
+                              <option>---Choisir---</option>
+                              <option *ngFor="let type of types" value="{{type.id}}">{{type.name}}</option>  
+                          </select>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="acquisitionDate">Date d'aquisition</label>
+                            <input type="date" class="form-control" id="acquisitionDate" formControlName="acquisitionDate">  
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="expirationDate">Date d'expiration</label>
+                            <input type="date" class="form-control" id="expirationDate" formControlName="expirationDate">  
+                          </div>
+                         </div>
+
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="object">Objet</label>
+                            <input type="text" class="form-control" id="object" formControlName="object">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="clientId">Client</label>
+                            <select class="form-control form-control-solid" id="clientId" formControlName="clientId">
+                              <option selected>---Choisir---</option>
+                              <option *ngFor="let client of clients" value="{{client.id}}">{{client.name}}</option>
+                          </select>
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="operatingSystem">Système d'exploitation</label>
+                            <input type="text" class="form-control" id="operatingSystem" formControlName="operatingSystem">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="hostkey">Clé d'Hote</label>
+                            <input type="text" class="form-control" id="hostkey" formControlName="hostkey">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="docubaseVersion">Version Docubase</label>
+                            <input type="text" class="form-control" id="docubaseVersion" formControlName="docubaseVersion">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="modules" class="d-block">Modules</label>
+                            <div *ngFor="let module of modulesList" class="form-check d-inline m-2">
+                              <input class="form-check-input"
+                              id="{{module}}" 
+                              type="checkbox" 
+                              [value]="module"
+                              [checked]="hasModule(module)"
+                              (change)="selectModule($event, module)"
+                              >
+                              <label class="form-check-label" for="{{module}}">{{module}}</label>
+                            </div>
+                            
+                        </div>
+                        </div>         
+                        
+                        <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Valider</button>
+                      </form>
+                </div>
+            </div>      
+            
+
+        </div>
+        <!-- /.container-fluid -->
+
+
+    </div>
+    <!-- End of Main Content -->
+    <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+    <app-footer></app-footer>
+
+</div>
+<!-- End of Content Wrapper -->
+</div>
+
+
+
+

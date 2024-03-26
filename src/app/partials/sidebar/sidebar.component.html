@@ -1,0 +1,70 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" style="height: 100%;" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">License Management</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" [routerLink]="['/']"  >
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>TABLEAU DE BORD</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Licences
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item" [routerLinkActive]="'active'">
+        <a class="nav-link" [routerLink]="['/license/docubase']">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>DOCUBASE</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item" [routerLinkActive]="'active'">
+        <a class="nav-link" [routerLink]="['/license/kcp']">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>KCP</span>
+        </a>
+        
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Addons
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link" href="#" routerLinkActive="active-link">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Utilisateurs</span>
+        </a>
+    </li>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0"  id="sidebarToggle" (click)="toggle()"></button>
+    </div>
+</ul>
+
