@@ -10,6 +10,7 @@ import { DocubaseLicense } from '../../../models/docubaseLicense';
 import { modulesEnum } from '../../../models/modulesEnum';
 import { Router, RouterModule } from '@angular/router';
 import { Client } from '../../../models/client';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-docubase-license-form',
@@ -26,7 +27,7 @@ export class DocubaseLicenseFormComponent implements OnInit{
   modulesList:Array<string>;
   state:boolean
   form:FormGroup
-  constructor(private fb:FormBuilder,private licenseService:LicenseService, private router:Router){}
+  constructor(private fb:FormBuilder,private licenseService:LicenseService, private router:Router, private toastr:ToastrService){}
 
   ngOnInit(): void {
   
@@ -82,7 +83,9 @@ export class DocubaseLicenseFormComponent implements OnInit{
     this.license=this.form.value
     this.license.userId=1
     this.licenseService.postDocubaseLicense(this.license).subscribe()
+    this.toastr.success('Ajout réussi!', 'Licence Docubase');
     this.router.navigate(['/license/docubase'])
+    
   }
 
   

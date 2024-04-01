@@ -11,7 +11,8 @@ import { Client } from '../models/client';
 })
 export class LicenseService {
 
-  api_url:string='http://192.168.1.31:5164/api/'
+  api_url:string='http://192.168.1.11:5164/api/';
+  itemId:number
   constructor(private http:HttpClient) { }
   
   
@@ -64,6 +65,18 @@ export class LicenseService {
       })
     )
   }
+
+  deleteDocubaseLicense(id:number){
+    return this.http.delete(`${this.api_url}DocubaseLicense/${id}`).pipe(
+      tap(res=>console.log(res)),
+      catchError((err)=>{
+        console.error(err)
+        return []
+      })
+    )
+  }
+
+
 }
 
 
