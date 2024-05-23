@@ -46,25 +46,29 @@
                                     
                                 </tr>
                             </thead>
-                        
+                            
                             <tbody>
+                                
                                 <tr *ngFor="let license of docubaseLicenses">
                                     <td>{{ license.id }}</td>
                                     <td>{{ license.number }}</td>
-                                    <td>{{ license.client.name }}</td>
-                                    <td>{{ license.client.country.name }}</td>
-                                    <td>{{ license.docubaseType.name }}</td>
+                                    <td>{{ license.clientName }}</td>
+                                    <td>{{ license.countryName }}</td>
+                                    <td>{{ license.docubaseTypeName }}</td>
                                     <td>{{ license.acquisitionDate | date:'dd/MM/YYYY' }}</td>
                                     <td>{{ license.expirationDate | date:'dd/MM/YYYY' }}</td>
                                     <td>{{ license.object }}</td>
                                     <td> 
                                         <a class="btn btn-danger btn-circle btn-sm mr-2" (click)="setItem(license.id)" data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash"></i></a>
-                                        <a href="#" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a [routerLink]="['/license/docubase/edit',license.id]" class="btn btn-info btn-circle btn-sm"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
+                               
                             </tbody>
                         </table>
+                        
                     </div>
+                    <app-spinner *ngIf="!docubaseLicenses && isBrowser"></app-spinner>
                 </div>
             </div>
 

@@ -3,15 +3,15 @@ import { KcpLicenseType } from "./kcpLicenseType";
 import { User } from "./userModel";
 
 export class KcpLicense{
-    Id: number;
-    Number: string;
-    AcquisitionDate: string;
-    ExpirationDate: string;
-    Object: string;
-    KcpLicenseTypeId: number;
-    UserId: number;
-    ClientId: number;
-    KcpLicenseType: KcpLicenseType;
-    User: User;
-    Client: Client;
+    id: number;
+    number: string;
+    acquisitionDate: string;
+    expirationDate: string;
+    object: string;
+    kcpLicenseTypeId: number;
+    userId: number;
+    clientId: number;
+    kcpLicenseType: KcpLicenseType;
+    user: User;
+    client: Client;
 }

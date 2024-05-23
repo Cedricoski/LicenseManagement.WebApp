@@ -8,7 +8,7 @@ import { LicenseService } from '../../../services/license.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DocubaseLicense } from '../../../models/docubaseLicense';
 import { modulesEnum } from '../../../models/modulesEnum';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Client } from '../../../models/client';
 import { ToastrService } from 'ngx-toastr';
 
@@ -24,18 +24,19 @@ export class DocubaseLicenseFormComponent implements OnInit{
   @Input() license:DocubaseLicense = new DocubaseLicense()
   types:DocubaseLicenseType[];
   clients:Client[];
+  isAddForm:boolean
   modulesList:Array<string>;
   state:boolean
   form:FormGroup
-  constructor(private fb:FormBuilder,private licenseService:LicenseService, private router:Router, private toastr:ToastrService){}
+  constructor(private fb:FormBuilder,private licenseService:LicenseService, private route: ActivatedRoute, private router:Router, private toastr:ToastrService){}
 
   ngOnInit(): void {
-  
+    this.isAddForm='add' === this.route.snapshot.url[2].path
     this.licenseService.getAllDocubaseLicenseType().subscribe(datas=>this.types=datas)
     this.licenseService.getAllClient().subscribe(datas=>this.clients=datas)
     this.modulesList=modulesEnum
     
-    this.form=this.fb.group(
+    /*this.form=this.fb.group(
       {
         number:['',Validators.required],
         acquisitionDate:[''],
@@ -49,7 +50,7 @@ export class DocubaseLicenseFormComponent implements OnInit{
         hostkey:[''],
         modules:new FormArray([],Validators.required)
       }
-      )
+      )*/
   }
 
 
@@ -57,7 +58,7 @@ export class DocubaseLicenseFormComponent implements OnInit{
     return this.license.modules.includes(module)
   }
 
-  selectModule($event:Event, module:string){
+  /*selectModule($event:Event, module:string){
     const formArray: FormArray = this.form.get('modules') as FormArray;
     const isChecked:boolean = ($event.target as HTMLInputElement).checked
     
@@ -76,14 +77,39 @@ export class DocubaseLicenseFormComponent implements OnInit{
 
     }
     
+  }*/
+
+  selectModule($event:Event,module:string){
+    const isChecked : boolean = ($event.target as HTMLInputElement).checked;
+    if(isChecked){
+      this.license.modules.push(module);
+    }
+    else{
+      const index = this.license.modules.indexOf(module);
+      this.license.modules.splice(index,1);
+    }
   }
+
+  
 
   onSubmit(){
     console.log('Submit form!')
-    this.license=this.form.value
+    //this.license=this.form.value
     this.license.userId=1
-    this.licenseService.postDocubaseLicense(this.license).subscribe()
-    this.toastr.success('Ajout réussi!', 'Licence Docubase');
+    if(this.isAddForm){
+      this.licenseService.postDocubaseLicense(this.license).subscribe();
+      this.toastr.success('Ajout réussi!', 'Licence Docubase');
+    }else{
+      /*this.licenseService.getDocubaseLicenseTypeById(this.license.docubaseLicenseTypeId).subscribe((res)=>this.license.docubaseType=res)
+      this.licenseService.getClientById(this.license.clientId).subscribe((res)=>this.license.client=res)
+      this.licenseService.getUserById(this.license.userId).subscribe((res)=>this.license.user=res)*/
+
+      console.log(this.license)
+
+      this.licenseService.updateDocubaseLicense(+this.license.id,this.license).subscribe()
+      this.toastr.success('Modification réussie!', 'Licence Docubase');
+    }
+    
     this.router.navigate(['/license/docubase'])
     
   }

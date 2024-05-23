@@ -4,6 +4,7 @@ import { DocubaseLicenseComponent } from './pages/docubase-license/docubase-lice
 import { KcpLicenseComponent } from './pages/kcp-license/kcp-license.component';
 import { DocubaseLicenseFormComponent } from './pages/forms/docubase-license-form/docubase-license-form.component';
 import { KcpLicenseFormComponent } from './pages/forms/kcp-license-form/kcp-license-form.component';
+import { EditDocubaseComponent } from './pages/forms/edit-docubase/edit-docubase.component';
 
 export const routes: Routes = 
 [
@@ -11,6 +12,7 @@ export const routes: Routes =
     {path:"license/docubase",component:DocubaseLicenseComponent},
     {path:"license/kcp",component:KcpLicenseComponent},
     {path:"license/docubase/add",component:DocubaseLicenseFormComponent},
+    {path:"license/docubase/edit/:id",component:EditDocubaseComponent},
     {path:"license/kcp/add",component:KcpLicenseFormComponent}
 
 ];

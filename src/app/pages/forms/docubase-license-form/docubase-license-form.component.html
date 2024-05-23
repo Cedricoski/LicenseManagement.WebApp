@@ -24,15 +24,15 @@
                     <h6 class="m-0 font-weight-bold text-primary">Données</h6>
                 </div>
                 <div class="card-body">
-                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <form *ngIf="license" (ngSubmit)="onSubmit()" #docubaseLicenseForm="ngForm">
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="number">Numéro de serie</label>
-                            <input type="text" class="form-control" id="number" formControlName="number">
+                            <input type="text" class="form-control" id="number" name="number" [(ngModel)]="license.number" #number="ngModel" required>
                           </div>
                           <div class="form-group col-md-6">
                             <label for="docubaseLicenseTypeId">Type de Licence</label>
-                            <select class="form-control form-control-solid" id="docubaseLicenseTypeId" formControlName="docubaseLicenseTypeId">
+                            <select class="form-control form-control-solid" id="docubaseLicenseTypeId" [(ngModel)]="license.docubaseLicenseTypeId" name="docubaseLicenseTypeId" #docubaseLicenseTypeId="ngModel">
                               <option>---Choisir---</option>
                               <option *ngFor="let type of types" value="{{type.id}}">{{type.name}}</option>  
                           </select>
@@ -41,22 +41,22 @@
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="acquisitionDate">Date d'aquisition</label>
-                            <input type="date" class="form-control" id="acquisitionDate" formControlName="acquisitionDate">  
+                            <input type="date" class="form-control" id="acquisitionDate" [(ngModel)]="license.acquisitionDate" name="acquisitionDate" #acquisitionDate="ngModel">  
                           </div>
                           <div class="form-group col-md-6">
                             <label for="expirationDate">Date d'expiration</label>
-                            <input type="date" class="form-control" id="expirationDate" formControlName="expirationDate">  
+                            <input type="date" class="form-control" id="expirationDate" [(ngModel)]="license.expirationDate" name="expirationDate" #expirationDate="ngModel">  
                           </div>
                          </div>
 
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="object">Objet</label>
-                            <input type="text" class="form-control" id="object" formControlName="object">
+                            <input type="text" class="form-control" id="object" [(ngModel)]="license.object" name="object" #object="ngModel">
                           </div>
                           <div class="form-group col-md-6">
                             <label for="clientId">Client</label>
-                            <select class="form-control form-control-solid" id="clientId" formControlName="clientId">
+                            <select class="form-control form-control-solid" id="clientId" [(ngModel)]="license.clientId" name="clientId" #clientId="ngModel">
                               <option selected>---Choisir---</option>
                               <option *ngFor="let client of clients" value="{{client.id}}">{{client.name}}</option>
                           </select>
@@ -65,17 +65,17 @@
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="operatingSystem">Système d'exploitation</label>
-                            <input type="text" class="form-control" id="operatingSystem" formControlName="operatingSystem">
+                            <input type="text" class="form-control" id="operatingSystem" [(ngModel)]="license.operatingSystem" name="operatingSystem" #operatingSystem="ngModel">
                           </div>
                           <div class="form-group col-md-6">
                             <label for="hostkey">Clé d'Hote</label>
-                            <input type="text" class="form-control" id="hostkey" formControlName="hostkey">
+                            <input type="text" class="form-control" id="hostkey" [(ngModel)]="license.hostKey" name="hostkey" #hostkey="ngModel">
                           </div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="docubaseVersion">Version Docubase</label>
-                            <input type="text" class="form-control" id="docubaseVersion" formControlName="docubaseVersion">
+                            <input type="text" class="form-control" id="docubaseVersion" [(ngModel)]="license.docubaseVersion" name="docubaseVersion" #docubaseVersion="ngModel">
                           </div>
                           <div class="form-group col-md-6">
                             <label for="modules" class="d-block">Modules</label>
@@ -93,7 +93,7 @@
                         </div>
                         </div>         
                         
-                        <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Valider</button>
+                        <button [disabled]="!docubaseLicenseForm.form.valid" type="submit" class="btn btn-primary">Valider</button>
                       </form>
                 </div>
             </div>      
